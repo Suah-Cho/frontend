@@ -24,6 +24,3 @@ jobs:
               run: |
                   docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }} .
                   docker push ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }}
-
-            - name: Logout of Azure
-              run: az logout
