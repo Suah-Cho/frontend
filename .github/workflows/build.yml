@@ -38,7 +38,7 @@ jobs:
             
             - name: Update Image Manifest
               run: |
-                sed -i '/name: frontend/{s|newTag: .*$|newTag: ${{ github.sha }}|}' cicd/manifest/image-manifest.yml
+                sed -i '/name: frontend/,/name: backend/{s/newTag:.*/newTag: '"${{ github.sha }}"'/}' cicd/manifest/image-manifest.yml
                 cat cicd/manifest/image-manifest.yml
             
             - name: Commit and Push Image Manifest File
