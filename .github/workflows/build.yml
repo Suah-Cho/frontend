@@ -46,5 +46,5 @@ jobs:
                 cd cicd
                 git config --global user.email "sacho0929@gmail.com"
                 git config --global user.name "Suah-Cho"
-                git commit -am "Update image manifest file - frontend ${{ github.sha }}"
+                git commit -am "Update image manifest ( frontend ${{ github.sha }} )"
                 git push origin main
