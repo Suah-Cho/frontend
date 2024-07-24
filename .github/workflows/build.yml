@@ -28,23 +28,23 @@ jobs:
                   docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }} .
                   docker push ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }}
 
-            # - name: Chekcout cicd repository
-            #   uses: actions/checkout@v2
-            #   with:
-            #     repository: 'Suah-Cho/cicd'
-            #     ref: main
-            #     token: ${{ secrets.PAT }}
-            #     path: cicd
+            - name: Chekcout cicd repository
+              uses: actions/checkout@v2
+              with:
+                repository: 'Suah-Cho/cicd'
+                ref: main
+                token: ${{ secrets.PAT }}
+                path: cicd
             
-            # - name: Update Image Manifest
-            #   run: |
-            #     sed -i '/name: frontend/,/name: backend/{s|image: arctestsa.azurecr.io/frontend:.*|image: arctestsa.azurecr.io/frontend:'"${{ github.sha }}"'|}' cicd/resources/docker-compose.yml
-            #     cat cicd/resources/docker-compose.yml
+            - name: Update Image Manifest
+              run: |
+                sed -i '/name: frontend/,/name: backend/{s|image: arctestsa.azurecr.io/frontend:.*|image: arctestsa.azurecr.io/frontend:'"${{ github.sha }}"'|}' cicd/resources/docker-compose.yml
+                cat cicd/resources/docker-compose.yml
             
-            # - name: Commit and Push Image Manifest File
-            #   run: |
-            #     cd cicd
-            #     git config --global user.email "sacho0929@gmail.com"
-            #     git config --global user.name "Suah-Cho"
-            #     git commit -am "Update frontend image - ${{ github.sha }}"
-            #     git push origin main
+            - name: Commit and Push Image Manifest File
+              run: |
+                cd cicd
+                git config --global user.email "sacho0929@gmail.com"
+                git config --global user.name "Suah-Cho"
+                git commit -am "Update frontend image - ${{ github.sha }}"
+                git push origin main
