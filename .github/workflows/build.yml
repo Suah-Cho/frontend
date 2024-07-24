@@ -44,7 +44,7 @@ jobs:
             - name: Commit and Push Image Manifest File
               run: |
                 cd cicd
-                git config --global user.email "${{ secrets.USEREMAIL }}"
-                git config --global user.name "${{ secrets.USERNAME }}"
+                git config user.email "${{ secrets.USEREMAIL }}"
+                git config user.name "${{ secrets.USERNAME }}"
                 git commit -am "Update frontend image - ${{ github.sha }}"
                 git push origin main
