@@ -23,7 +23,7 @@ jobs:
                   if [ -z "$VERSION" ]; then
                       VERSION="0.0.0"
                   fi
-                  IFS='.' read -r a VERSION_PARTS <<< "$VERSION"
+                  IFS='.' read -r -a VERSION_PARTS <<< "$VERSION"
                   PATCH_VERSION=$((VERSION_PARTS[2]+1))
                   NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$PATCH_VERSION"
                   echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
