@@ -19,7 +19,8 @@ jobs:
             - name: Version
               id: version-tag
               run: |
-                  VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+                  git fetch --tags
+                  VERSION=$(git tag --sort=-v:refname | head -n 1 || echo "0.0.0")
                   IFS='.' read -r -a VERSION_PARTS <<< "$VERSION"
                   PATCH_VERSION=$((VERSION_PARTS[2]+1))
                   NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$PATCH_VERSION"
