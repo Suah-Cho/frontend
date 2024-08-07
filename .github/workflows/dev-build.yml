@@ -19,10 +19,7 @@ jobs:
             - name: Version
               id: version-tag
               run: |
-                  VERSION=$(git describe --tags --abbrev=0)
-                  if [ -z "$VERSION" ]; then
-                      VERSION="0.0.0"
-                  fi
+                  VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
                   IFS='.' read -r -a VERSION_PARTS <<< "$VERSION"
                   PATCH_VERSION=$((VERSION_PARTS[2]+1))
                   NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$PATCH_VERSION"
